@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="IS482_Visual Analytic Project">
+  <meta name="author" content="Team Duo">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duo</title>
+
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/simple-line-icons.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css" />
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+
+  <script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+  <script src="https://www.amcharts.com/lib/3/serial.js"></script>
+  <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+  <script src="https://d3js.org/d3.v3.js"></script>
+
+  <script src="data.js"></script>
+
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    .amcharts-legend-div {
+      overflow: visible;
+    }
+  </style>
+
+</head>
+
+<body id="mimin" class="dashboard">
+  <!-- start: Header -->
+  <nav class="navbar navbar-default header navbar-fixed-top">
+    <div class="col-md-12 nav-wrapper">
+      <div class="navbar-header" style="width:100%;">
+        <div class="opener-left-menu is-open">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </div>
+        <a href="index.html" class="navbar-brand"> 
+                 <b>DUO</b>
+                </a>
+
+        <ul class="nav navbar-nav navbar-right user-nav">
+          <li class="dropdown avatar-dropdown">
+            <img src="asset/img/logo.jpg" class="img-circle avatar" />
+          </li>
+          <li>&emsp;&emsp;&emsp;</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end: Header -->
+
+  <div class="container-fluid mimin-wrapper">
+
+    <!-- start:Left Menu -->
+    <div id="left-menu">
+      <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+          <li>
+            <div class="left-bg"></div>
+          </li>
+          <li>
+            <img src="asset/img/logo.jpg" class="img-circle menu-icon animated fadeInLeft" />
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header"><span class="fa-area-chart fa"></span> GES
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="index.html">Overview</a></li>
+              <li><a href="ranking.html">Ranking </a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                          <span class="fa-money fa"></span> Labour Market
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="monthlyIncome.html">Monthly Income</a></li>
+            </ul>
+          </li>
+          <li class="active ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-user-plus  fa"></span> Employment
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="vacRates.html">Vacancy Rates</a></li>
+              <li><a href="vacReason.html">Vacancy Reason</a></li>
+            </ul>
+          </li>
+					<li><a href="https://wiki.smu.edu.sg/1718t1is428g1/Project_Groups"><i class="fa fa-wikipedia-w" aria-hidden="true"></i>&emsp;IS428_VA Wiki Page</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: Left Menu -->
+
+
+    <!-- start: content -->
+    <div id="content">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="col-md-6 col-sm-12">
+            <h3 class="animated fadeInLeft">Employment Rate</h3>
+            <p class="animated fadeInDown"> Relation between Recruitment, Vacancy, Resignation Rates </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12">
+            <h1 class="text-center">Overall Rate</h1>
+            <div class="panel box-v1" style="min-height: 700px;">
+            <div id="vacRateChartdiv" style="min-height: 700px;"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12" style="padding:20px;">
+          <div class="col-md-12">
+              <h1 class="text-center">Per Occupation Group</h1>
+              <div class="panel box-v1" style="min-height: 700px;">
+                
+              <div id="vacRateChart0" style="min-height: 700px;"></div>
+              <div id="vacRateChart1" style="min-height: 700px;"></div>
+              <div id="vacRateChart2" style="min-height: 700px;"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <!-- end: content -->
+
+
+
+  </div>
+  <!-- start: Mobile View Menu -->
+  <div id="mimin-mobile" class="reverse">
+    <div class="mimin-mobile-menu-list">
+      <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
+        <ul class="nav nav-list">
+          <li class="active ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-home fa"></span>Dashboard 
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="dashboard-v1.html">Dashboard v.1</a></li>
+              <li><a href="dashboard-v2.html">Dashboard v.2</a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-diamond fa"></span>Layout
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="topnav.html">Top Navigation</a></li>
+              <li><a href="boxed.html">Boxed</a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-area-chart fa"></span>Charts
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="chartjs.html">ChartJs</a></li>
+              <li><a href="morris.html">Morris</a></li>
+              <li><a href="flot.html">Flot</a></li>
+              <li><a href="sparkline.html">SparkLine</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">
+        <span class="fa fa-bars"></span>
+      </button>
+  <!-- end: Mobile -->
+
+  <!-- start: Javascript -->
+
+  <script>
+    getRateOverallData.then(function (data) {
+
+      var chart = AmCharts.makeChart("vacRateChartdiv", {
+        "type": "serial",
+        "theme": "light",
+        "dataDateFormat": "YYYY-MM-DD",
+        "precision": 2,
+        "titles": [
+          {
+            "text": "Overall Recruitment, Resignation & Vacancy Rate",
+            "size": 15
+          }
+        ],
+        "valueAxes": [{
+          "id": "v1",
+          "title": "Recruitment & Resignation Rates (%)",
+          "position": "left",
+          "autoGridCount": false
+        }, {
+          "id": "v2",
+          "title": "Vacancy Rate (%)",
+          "gridAlpha": 0,
+          "position": "right",
+          "autoGridCount": false
+        }],
+        "graphs": [{
+          "id": "g3",
+          "valueAxis": "v1",
+          "lineColor": "#f28e2b",
+          "fillColors": "#f28e2b",
+          "fillAlphas": 1,
+          "type": "column",
+          "title": "Resignation Rate",
+          "valueField": "resignation",
+          "clustered": false,
+          "columnWidth": 70,
+          "legendValueText": "[[value]]%",
+          "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+        }, {
+          "id": "g4",
+          "valueAxis": "v1",
+          "lineColor": "#4e79a7",
+          "fillColors": "#4e79a7",
+          "fillAlphas": 1,
+          "type": "column",
+          "title": "Recruitment Rate",
+          "valueField": "recruitment",
+          "clustered": false,
+          "columnWidth": 45,
+          "legendValueText": "[[value]]%",
+          "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+        }, {
+          "id": "g1",
+          "valueAxis": "v2",
+          "bullet": "round",
+          "bulletBorderAlpha": 1,
+          "bulletColor": "#FFFFFF",
+          "bulletSize": 10,
+          "hideBulletsCount": 50,
+          "lineThickness": 1,
+          "lineColor": "#20acd4",
+          "type": "smoothedLine",
+          "title": "Vacancy Rate",
+          "useLineColorForBulletBorder": true,
+          "valueField": "vacancy",
+          "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+        }],
+        "chartScrollbar": {
+          "graph": "g1",
+          "oppositeAxis": false,
+          "offset": 30,
+          "scrollbarHeight": 50,
+          "backgroundAlpha": 0,
+          "selectedBackgroundAlpha": 0.1,
+          "selectedBackgroundColor": "#888888",
+          "graphFillAlpha": 0,
+          "graphLineAlpha": 0.5,
+          "selectedGraphFillAlpha": 0,
+          "selectedGraphLineAlpha": 1,
+          "autoGridCount": true,
+          "color": "#AAAAAA"
+        },
+        "chartCursor": {
+          "pan": true,
+          "valueLineEnabled": true,
+          "valueLineBalloonEnabled": true,
+          "cursorAlpha": 0.2,
+          "valueLineAlpha": 0.2
+        },
+        "categoryField": "date",
+        "categoryAxis": {
+          "parseDates": true,
+          "dashLength": 1,
+          "minorGridEnabled": true
+        },
+        "legend": {
+          "useGraphSettings": true,
+          "position": "top"
+        },
+        "balloon": {
+          "borderThickness": 1,
+          "shadowAlpha": 0
+        },
+        "export": {
+          "enabled": false
+        },
+        "dataProvider": data
+      });
+    });
+
+  </script>
+
+<script>
+    getRateOccupationData.then(function (data) {
+        var rateByOccupation = d3.nest()
+            .key(function (d) { return d.occupation_group; })
+            .entries(data);
+
+        console.log(rateByOccupation);
+        for (var i = 0; i < rateByOccupation.length; i++) {
+            var chart = AmCharts.makeChart("vacRateChart" + i, {
+            "type": "serial",
+            "theme": "light",
+            "dataDateFormat": "YYYY-MM-DD",
+            "precision": 2,
+            "titles": [
+                {
+                    "text": "Recruitment, Resignation & Vacancy Rate for '"  + rateByOccupation[i].key + "' Group",
+                    "size": 13
+                }
+            ],
+            "valueAxes": [{
+                "id": "v1",
+                "title": "Recruitment & Resignation Rates (%)",
+                "position": "left",
+                "autoGridCount": false
+            }, {
+                "id": "v2",
+                "title": "Vacancy Rate (%)",
+                "gridAlpha": 0,
+                "position": "right",
+                "autoGridCount": false
+            }],
+            "graphs": [{
+                "id": "g3",
+                "valueAxis": "v1",
+                "lineColor": "#f28e2b",
+                "fillColors": "#f28e2b",
+                "fillAlphas": 1,
+                "type": "column",
+                "title": "Resignation Rate",
+                "valueField": "resignation",
+                "clustered": false,
+                "columnWidth": 70,
+                "legendValueText": "[[value]]%",
+                "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+            }, {
+                "id": "g4",
+                "valueAxis": "v1",
+                "lineColor": "#4e79a7",
+                "fillColors": "#4e79a7",
+                "fillAlphas": 1,
+                "type": "column",
+                "title": "Recruitment Rate",
+                "valueField": "recruitment",
+                "clustered": false,
+                "columnWidth": 45,
+                "legendValueText": "[[value]]%",
+                "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+            }, {
+                "id": "g1",
+                "valueAxis": "v2",
+                "bullet": "round",
+                "bulletBorderAlpha": 1,
+                "bulletColor": "#FFFFFF",
+                "bulletSize": 10,
+                "hideBulletsCount": 50,
+                "lineThickness": 1,
+                "lineColor": "#20acd4",
+                "type": "smoothedLine",
+                "title": "Vacancy Rate",
+                "useLineColorForBulletBorder": true,
+                "valueField": "vacancy",
+                "balloonText": "[[title]]<br /><b style='font-size: 130%'>[[value]]%</b>"
+            }],
+            "chartScrollbar": {
+                "graph": "g1",
+                "oppositeAxis": false,
+                "offset": 30,
+                "scrollbarHeight": 50,
+                "backgroundAlpha": 0,
+                "selectedBackgroundAlpha": 0.1,
+                "selectedBackgroundColor": "#888888",
+                "graphFillAlpha": 0,
+                "graphLineAlpha": 0.5,
+                "selectedGraphFillAlpha": 0,
+                "selectedGraphLineAlpha": 1,
+                "autoGridCount": true,
+                "color": "#AAAAAA"
+            },
+            "chartCursor": {
+                "pan": true,
+                "valueLineEnabled": true,
+                "valueLineBalloonEnabled": true,
+                "cursorAlpha": 0.2,
+                "valueLineAlpha": 0.2
+            },
+            "categoryField": "date",
+            "categoryAxis": {
+                "parseDates": true,
+                "dashLength": 1,
+                "minorGridEnabled": true
+            },
+            "legend": {
+                "useGraphSettings": true,
+                "position": "top"
+            },
+            "balloon": {
+                "borderThickness": 1,
+                "shadowAlpha": 0
+            },
+            "dataProvider": rateByOccupation[i].values
+        });
+        }
+
+    });
+</script>
+
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/js/jquery.ui.min.js"></script>
+  <script src="asset/js/bootstrap.min.js"></script>
+
+
+  <!-- plugins -->
+  <script src="asset/js/jquery.nicescroll.js"></script>
+
+
+
+  <!-- custom -->
+  <script src="asset/js/main.js"></script>
+  <!-- end: Javascript -->
+</body>
+
+</html>

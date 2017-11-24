@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="IS482_Visual Analytic Project">
+  <meta name="author" content="Team Duo">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duo</title>
+
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/simple-line-icons.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css" />
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+
+
+  <script src="https://d3js.org/d3.v3.min.js"></script>
+  <script src="data.js"></script>
+  <script src="RadarChart.js"></script>
+
+  <style>
+    .label {
+      font-size: 12px;
+      opacity: 0.8;
+      color: #ccc;
+    }
+
+
+    .category {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+
+    #chart {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+    }
+  </style>
+
+
+</head>
+
+<body id="mimin" class="dashboard">
+  <!-- start: Header -->
+  <nav class="navbar navbar-default header navbar-fixed-top">
+    <div class="col-md-12 nav-wrapper">
+      <div class="navbar-header" style="width:100%;">
+        <div class="opener-left-menu is-open">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </div>
+        <a href="index.html" class="navbar-brand"> 
+                 <b>DUO</b>
+                </a>
+
+        <ul class="nav navbar-nav navbar-right user-nav">
+          <li class="dropdown avatar-dropdown">
+            <img src="asset/img/logo.jpg" class="img-circle avatar" />
+          </li>
+          <li>&emsp;&emsp;&emsp;</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end: Header -->
+
+  <div class="container-fluid mimin-wrapper">
+
+    <!-- start:Left Menu -->
+    <div id="left-menu">
+      <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+          <li>
+            <div class="left-bg"></div>
+          </li>
+          <li>
+            <img src="asset/img/logo.jpg" class="img-circle menu-icon animated fadeInLeft" />
+          </li>
+          <li class="ripple">
+              <a class="tree-toggle nav-header"><span class="fa-area-chart fa"></span> GES
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+              <ul class="nav nav-list tree">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="ranking.html">Ranking </a></li>
+              </ul>
+            </li>
+            <li class="ripple">
+              <a class="tree-toggle nav-header">
+                            <span class="fa-money fa"></span> Labour Market
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+              <ul class="nav nav-list tree">
+                <li><a href="monthlyIncome.html">Monthly Income</a></li>
+              </ul>
+            </li>
+            <li class="active ripple">
+              <a class="tree-toggle nav-header">
+                          <span class="fa-user-plus  fa"></span> Employment
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+              <ul class="nav nav-list tree">
+                <li><a href="vacRates.html">Vacancy Rates</a></li>
+                <li><a href="vacReason.html">Vacancy Reason</a></li>
+            </ul>
+          </li>
+					<li><a href="https://wiki.smu.edu.sg/1718t1is428g1/Project_Groups"><i class="fa fa-wikipedia-w" aria-hidden="true"></i>&emsp;IS428_VA Wiki Page</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: Left Menu -->
+
+
+    <!-- start: content -->
+    <div id="content">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="col-md-6 col-sm-12">
+            <h3 class="animated fadeInLeft">Vacancy Reason</h3>
+            <p class="animated fadeInDown"> Reason for the vacancy of the job </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12 card-wrap ">
+          
+            <div class="panel box-v1" style="height: 700px;">
+                <div class="col-md-offset-2 col-md-10" style="margin-top: 50px">
+              <button id="data1">2015</button>
+              <button id="data2">2016</button>
+
+              <button id="drill1">View By Sector </button>
+              <button id="drill2">View By Services Industry</button>
+              <button id="drill3">View By Education</button>
+
+              <div id="body">
+                <div id="chart"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end: content -->
+
+
+
+  </div>
+  <!-- start: Mobile View Menu -->
+  <div id="mimin-mobile" class="reverse">
+    <div class="mimin-mobile-menu-list">
+      <div class="col-md-12 sub-mimin-mobile-menu-list animated fadeInLeft">
+        <ul class="nav nav-list">
+          <li class="active ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-home fa"></span>Dashboard 
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="dashboard-v1.html">Dashboard v.1</a></li>
+              <li><a href="dashboard-v2.html">Dashboard v.2</a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-diamond fa"></span>Layout
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="topnav.html">Top Navigation</a></li>
+              <li><a href="boxed.html">Boxed</a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                        <span class="fa-area-chart fa"></span>Charts
+                        <span class="fa-angle-right fa right-arrow text-right"></span>
+                      </a>
+            <ul class="nav nav-list tree">
+              <li><a href="chartjs.html">ChartJs</a></li>
+              <li><a href="morris.html">Morris</a></li>
+              <li><a href="flot.html">Flot</a></li>
+              <li><a href="sparkline.html">SparkLine</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">
+        <span class="fa fa-bars"></span>
+      </button>
+  <!-- end: Mobile -->
+
+  <!-- start: Javascript -->
+
+  <script>
+    getVacReasonIndustryData.then(function (data) {
+
+      var w = 400,
+        h = 400;
+
+      var year = 0, type = 1;
+
+      var colorscale = d3.scale.category10();
+
+      var overall = ['Manufacturing', 'Construction', 'Services'];
+      var services = ['Wholesale & Retail Trade', 'Transportation & Storage', 'Accommodation & Food Services', 'Information & Communications',
+        'Financial & Insurance Services', 'Real Estate Services', 'Professional Services', 'Administrative & Support Services', 'Community, Social & Personal Services'];
+      var education = ['Degree and Above', 'Diploma and Professional Qualification', 'Post-Secondary (Non-Tertiary)', 'Secondary', 'Lower Secondary', 'Primary or Lower'];
+
+
+      var dataByYear = d3.nest()
+        .key(function (d) { return d.Year; })
+        .key(function (d) { return d.Industry; })
+        .entries(data);
+
+      //Select the Year and load data accordingly
+      d3.select("#data1")
+        .on("click", function (d, i) {
+          year = 0
+          drawGraph(year);
+        })
+      d3.select("#data2")
+        .on("click", function (d, i) {
+          year = 1;
+          drawGraph(year);
+        })
+
+      d3.select('#drill1')
+        .on('click', function (d, i) {
+          type = 1;
+          drawGraph(year);
+        })
+      d3.select('#drill2')
+        .on('click', function (d, i) {
+          type = 2;
+          drawGraph(year);
+        })
+
+      d3.select('#drill3')
+        .on('click', function (d, i) {
+          type = 3;
+          drawGraph(year);
+        })
+
+
+
+      drawGraph(year);
+
+      function drawGraph(year) {
+
+        var overallData = []
+        var servicesData = []
+        var educationData = []
+
+        console.log(dataByYear[year]);
+
+        dataByYear[year].values.forEach(function (d) {
+          var category = d.key;
+          var val = d.values[0];
+          temp = [
+            { axis: "Find Pay Unattractive", value: Number(val.Reason2) },
+            { axis: "Prefer Shorter Workweek", value: Number(val.Reason3) },
+            { axis: "Find The Job Physically Strenuous", value: Number(val.Reason4) },
+            { axis: "Prefer Not To Do Shift Work", value: Number(val.Reason5) },
+            { axis: "Find The Working Environment Not Conducive", value: Number(val.Reason6) },
+            { axis: "Lack The Right Personality Traits, Work Attitude & Motivation For The Job", value: Number(val.Reason7) },
+            { axis: "Find Job Lacking In Career Prospects", value: Number(val.Reason8) },
+            { axis: "Competition For Local Candidates From Other Employers Is Too Stiff", value: Number(val.Reason9) },
+            { axis: "Lack The Necessary Work Experience", value: Number(val.Reason10) },
+            { axis: "Working Location Is Too Far", value: Number(val.Reason11) },
+            { axis: "Lack Of Young Local Candidates", value: Number(val.Reason12) },
+            { axis: "Find The Image Of The Sector Poor", value: Number(val.Reason13) },
+            { axis: "Lack The Necessary Specialised Skills", value: Number(val.Reason14) },
+            { axis: "Lack The Necessary Qualifications", value: Number(val.Reason15) }
+          ];
+          if (overall.indexOf(category) > -1) {
+            overallData.push(temp);
+          } else if (services.indexOf(category) > -1){
+            servicesData.push(temp);
+          } else {
+            educationData.push(temp);
+          }
+        });
+
+        //Legend titles
+        //Data
+        if (type == 1) {
+          var LegendOptions = overall;
+          var d = overallData;
+          var level = "Industry";
+        } else if (type == 2) {
+          var LegendOptions = services;
+          var d = servicesData;
+          var level = "Services";
+        } else {
+          var LegendOptions = education;
+          var d = educationData;
+          var level = "Education";
+        }
+
+        //Options for the Radar chart, other than default
+        var mycfg = {
+          w: w,
+          h: h,
+          maxValue: 0.8,
+          levels: 6,
+          ExtraWidthX: 350,
+          colorscale: colorscale
+        }
+
+        //Call function to draw the Radar chart
+        //Will expect that data is in %'s
+        RadarChart.draw("#chart", d, mycfg, LegendOptions, 2015 + year, level);
+      };
+
+    });
+  </script>
+
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/js/jquery.ui.min.js"></script>
+  <script src="asset/js/bootstrap.min.js"></script>
+
+
+  <!-- plugins -->
+  <script src="asset/js/jquery.nicescroll.js"></script>
+
+
+  <!-- custom -->
+  <script src="asset/js/main.js"></script>
+
+
+  <!-- end: Javascript -->
+</body>
+
+</html>

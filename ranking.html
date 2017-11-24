@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="description" content="IS482_Visual Analytic Project">
+  <meta name="author" content="Team Duo">
+  <meta name="keyword" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Duo</title>
+
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/simple-line-icons.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css" />
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+
+  <link rel="shortcut icon" href="asset/img/logomi.png">
+
+
+  </script>
+  <script src="https://d3js.org/d3.v4.0.0-alpha.35.min.js"></script>
+  <script src="https://d3js.org/d3.v3.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.6.7/d3-tip.js"></script>
+  <script src="data.js"></script>
+  <script src="dragit.js"></script>
+
+
+  <style type="text/css">
+    body {
+      margin: 0;
+      font-family: arial, sans;
+    }
+
+    .label {
+      font-size: 15px;
+    }
+
+    .legend {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .legend text,
+    .axis text {
+      font-size: 13px;
+      fill: #333;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke-width: 1px;
+      stroke: #e7e7e7;
+    }
+
+    circle {
+      stroke: #fff;
+    }
+
+    .bubble {
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+
+    .bubble text {
+      opacity: 0;
+      pointer-events: none;
+      font-size: 12px;
+    }
+
+    .bubble:hover text {
+      opacity: 1;
+    }
+
+    .bubble:hover circle {
+      fill-opacity: 1;
+    }
+
+    .d3-tip {
+      line-height: 1;
+      font-weight: bold;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      border-radius: 2px;
+    }
+    /* Creates a small triangle extender for the tooltip */
+
+    .d3-tip:after {
+      box-sizing: border-box;
+      display: inline;
+      font-size: 10px;
+      width: 100%;
+      line-height: 1;
+      color: rgba(0, 0, 0, 0.8);
+      content: "\25BC";
+      position: absolute;
+      text-align: center;
+    }
+    /* Style northward tooltips differently */
+
+    .d3-tip.n:after {
+      margin: -1px 0 0 0;
+      top: 100%;
+      left: 0;
+    }
+  </style>
+
+</head>
+
+<body id="mimin" class="dashboard">
+  <!-- start: Header -->
+  <nav class="navbar navbar-default header navbar-fixed-top">
+    <div class="col-md-12 nav-wrapper">
+      <div class="navbar-header" style="width:100%;">
+        <div class="opener-left-menu is-open">
+          <span class="top"></span>
+          <span class="middle"></span>
+          <span class="bottom"></span>
+        </div>
+        <a href="index.html" class="navbar-brand"> 
+                 <b>DUO</b>
+                </a>
+
+        <ul class="nav navbar-nav navbar-right user-nav">
+          <li class="dropdown avatar-dropdown">
+            <img src="asset/img/logo.jpg" class="img-circle avatar" />
+          </li>
+          <li>&emsp;&emsp;&emsp;</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- end: Header -->
+
+  <div class="container-fluid mimin-wrapper">
+
+    <!-- start:Left Menu -->
+    <div id="left-menu">
+      <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+          <li>
+            <div class="left-bg"></div>
+          </li>
+          <li>
+            <img src="asset/img/logo.jpg" class="img-circle menu-icon animated fadeInLeft" />
+          </li>
+          <li class="active ripple">
+            <a class="tree-toggle nav-header"><span class="fa-area-chart fa"></span> GES
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+            <ul class="nav nav-list tree">
+              <li><a href="index.html">Overview</a></li>
+              <li><a href="ranking.html">Ranking </a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                            <span class="fa-money fa"></span> Labour Market
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+            <ul class="nav nav-list tree">
+              <li><a href="monthlyIncome.html">Monthly Income</a></li>
+            </ul>
+          </li>
+          <li class="ripple">
+            <a class="tree-toggle nav-header">
+                          <span class="fa-user-plus  fa"></span> Employment
+                          <span class="fa-angle-right fa right-arrow text-right"></span>
+                        </a>
+            <ul class="nav nav-list tree">
+              <li><a href="vacRates.html">Vacancy Rates</a></li>
+              <li><a href="vacReason.html">Vacancy Reason</a></li>
+            </ul>
+          </li>
+					<li><a href="https://wiki.smu.edu.sg/1718t1is428g1/Project_Groups"><i class="fa fa-wikipedia-w" aria-hidden="true"></i>&emsp;IS428_VA Wiki Page</a></li>
+        </ul>
+      </div>
+    </div>
+    <!-- end: Left Menu -->
+
+
+    <!-- start: content -->
+    <div id="content">
+      <div class="panel">
+        <div class="panel-body">
+          <div class="col-md-6 col-sm-12">
+            <h3 class="animated fadeInLeft">Ranking of Graduate Employment Survey</h3>
+            
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" style="padding:20px;">
+        <div class="col-md-12 card-wrap">
+          <div class="panel box-v1">
+            <div>
+<div class='tableauPlaceholder' id='viz1511138387060' style='position: relative'><noscript><a href='#'><img alt='Dashboard 1 ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NX&#47;NXC4RDR9Q&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;NXC4RDR9Q' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;NX&#47;NXC4RDR9Q&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='filter' value='publish=yes' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1511138387060');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='1000px';vizElement.style.height='827px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
+			
+			
+			</div>
+            <p style="clear:both"></p>
+
+            <div id="slider" style="width: 80%; padding-left: 30px; padding-bottom: 50px; margin-top: -20px"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end: content -->
+
+
+
+  </div>
+
+
+  <!-- start: Javascript -->
+  <script>
+    var margin = { top: 50, right: 100, bottom: 40, left: 80 };
+    var width = 960 - margin.left - margin.right;
+    var height = 500 - margin.top - margin.bottom;
+
+    var svg = d3.select("#viz").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+      .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var xscale = d3.scale.linear()
+      .domain([0, 105])
+      .range([0, width]);
+
+    var yscale = d3.scale.linear()
+      .range([height, 0]);
+
+    var radius = d3.scale.sqrt()
+      .range([8, 8]);
+
+    var color = d3.scale.category10();
+
+    var xAxis = d3.svg.axis().orient("bottom").scale(xscale).tickSize(-height);
+
+    var yAxis = d3.svg.axis().orient("left").scale(yscale).tickSize(-width);
+
+
+    d3.csv("data/ges.csv", function (data) {
+      console.log(data);
+
+      // data pre-processing
+      data.forEach(function (d) {
+        if (d["gross_mean"] >= -1) {
+          d.y = +d["gross_mean"];
+          d.x = +d["employment_rate"];
+          d.r = 1;
+        }
+      });
+
+      var gesByYear = d3.nest()
+        .key(function (d) { return d.year; })
+        .entries(data);
+
+      var gesByDegree = d3.nest()
+        .key(function (d) { return d.degree; })
+        .key(function (d) { return d.year; })
+        .entries(data);
+
+      var gesBySchool = d3.nest()
+        .key(function (d) { return d.school; })
+        .entries(data);
+
+      console.log(gesByDegree);
+      console.log(gesByYear);
+
+      //console.log(gesBySchool);
+      //console.log(gesByYear);
+
+      // Updates the display to show the specified year.
+      function displayYear(year) {
+
+        group.data(interpolateData(year)).attr("transform", function (d) {
+          return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")"
+        }).enter().append("g")
+          ;
+      }
+
+      function interpolateData(year) {
+        return gesByYear[year - 2009].values;
+      }
+      function order(a, b) {
+        return b.r - a.r;
+      }
+      data.sort(function (a, b) { return b.r - a.r; });
+
+      yscale.domain(d3.extent(data, function (d) {
+        return d.y;
+      })).nice();
+
+      radius.domain(d3.extent(data, function (d) {
+        return d.r;
+      })).nice();
+
+      svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("class", "x axis")
+        .call(xAxis);
+
+      svg.append("g")
+        .attr("transform", "translate(0,0)")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+            var formatter = new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      // the default value for minimumFractionDigits depends on the currency
+      // and is usually already 2
+    });
+
+      var tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-10, 0])
+        .html(function (d) {
+          var salary = d["gross_mean"];
+          var employmentRate = d["employment_rate"]
+          return "School : " + d["school"] + " <br> Degree : " + d["degree"] + "<br> Gross Salary : " + formatter.format(salary) + " <br> Employment Rate : " + employmentRate + "%" + "<br> Year : " + d["year"];
+        });
+
+
+      var group = svg.selectAll("g.bubble")
+        .data(interpolateData(2016))
+        .enter().append("g")
+        .attr("class", "bubble")
+        .attr("transform", function (d) {
+          return "translate(" + xscale(d.x) + "," + yscale(d.y) + ")"
+        }).on("mouseover", tip.show)
+        .on("mouseout", tip.hide);
+
+        ;
+
+      group
+        .append("circle")
+        .attr("r", function (d) { return radius(d.r); })
+        .style("fill", function (d) {
+          return color(d["university"]);
+        })
+        
+      group
+        .append("text")
+        .attr("x", function (d) { return radius(d.r); })
+        .attr("alignment-baseline", "middle");
+
+      svg.call(tip);
+      svg.append("text")
+        .attr("x", 6)
+        .attr("y", -2)
+        .attr("class", "label")
+        .text("Gross Monthly Salary (S$)");
+
+      svg.append("text")
+        .attr("x", width - 2)
+        .attr("y", height - 6)
+        .attr("text-anchor", "end")
+        .attr("class", "label")
+        .text("Employment Rate (%)");
+
+      var legend = svg.selectAll(".legend")
+        .data(color.domain())
+        .enter().append("g")
+        .attr("class", "legend")
+        .attr("transform", function (d, i) { return "translate(2," + i * 14 + ")"; });
+
+      legend.append("rect")
+        .attr("x", width)
+        .attr("width", 12)
+        .attr("height", 12)
+        .style("fill", color);
+
+      legend.append("text")
+        .attr("x", width + 20)
+        .attr("y", 6)
+        .attr("dy", ".35em")
+        .style("text-anchor", "start")
+        .text(function (d) { return d; });
+
+      legend.on("mouseover", function (type) {
+        d3.selectAll(".legend")
+          .style("opacity", 0.1);
+        d3.select(this)
+          .style("opacity", 1);
+        d3.selectAll(".bubble")
+          .style("opacity", 0.1)
+          .filter(function (d) { return d["university"] == type; })
+          .style("opacity", 1);
+      })
+        .on("mouseout", function (type) {
+          d3.selectAll(".legend")
+            .style("opacity", 1);
+          d3.selectAll(".bubble")
+            .style("opacity", 1);
+
+        });
+
+      init();
+
+      function update(v, duration) {
+        dragit.time.current = v || dragit.time.current;
+        displayYear(dragit.time.current);
+        d3.select("#slider").property("value", dragit.time.current);
+      }
+
+      function init() {
+        dragit.init("svg");
+        dragit.time = { min: 2009, max: 2016, step: 1, current: 2016 }
+        dragit.data = d3.range(gesByDegree.length).map(function () { return Array(); })
+        for (var yy = 2009; yy < 2017; yy++) {
+          interpolateData(yy).filter(function (d, i) {
+
+            dragit.data[i][yy - dragit.time.min] = [xscale(d.x) + 50, yscale(d.y) + 30];
+          })
+        }
+        console.log(dragit.data);
+        dragit.evt.register("update", update);
+        dragit.utils.slider("#slider", false)
+
+        d3.select("#slider")
+          .on("mousemove", function () {
+            update(parseInt(this.value), 500);
+          })
+        //dragit.trajectory.toggleAll('selected');
+      }
+
+    });
+  </script>
+  <script src="asset/js/jquery.min.js"></script>
+  <script src="asset/js/jquery.ui.min.js"></script>
+  <script src="asset/js/bootstrap.min.js"></script>
+
+
+  <!-- plugins -->
+  <script src="asset/js/jquery.nicescroll.js"></script>
+
+
+
+  <!-- custom -->
+  <script src="asset/js/main.js"></script>
+  <!-- end: Javascript -->
+</body>
+
+</html>

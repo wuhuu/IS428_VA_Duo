@@ -1,0 +1,81 @@
+﻿year,university,school,degree,employment_rate,gross_mean,gross_median,gross_25_percentile,gross_75_percentile
+2009,SMU,School of Accountancy,Accountancy,95.30,3073,2500,2400,2950
+2009,SMU,School of Accountancy,Accountancy Cum Laude and above,96.80,3586,2600,2400,4000
+2010,SMU,School of Accountancy,Accountancy,97.90,3162,2650,2600,3500
+2010,SMU,School of Accountancy,Accountancy Cum Laude and above,95.80,3625,3000,2600,3800
+2011,SMU,School of Accountancy,Accountancy,96.90,3267,2900,2700,3600
+2011,SMU,School of Accountancy,Accountancy Cum Laude and above,98.60,3671,3225,2925,4125
+2012,SMU,School of Accountancy,Accountancy,93.00,3268,2800,2700,3500
+2012,SMU,School of Accountancy,Accountancy Cum Laude and above,97.00,3765,3261,2720,4192
+2013,SMU,School of Accountancy,Accountancy,93.20,3342,2825,2700,3430
+2013,SMU,School of Accountancy,Accountancy Cum Laude and above,95.20,3634,3000,2700,3750
+2014,SMU,School of Accountancy,Accountancy,91.40,3420,2875,2722,3614
+2014,SMU,School of Accountancy,Accountancy Cum Laude and above,96.10,3903,3500,2875,4300
+2015,SMU,School of Accountancy,Accountancy,93.00,3427,3000,2850,3500
+2015,SMU,School of Accountancy,Accountancy Cum Laude and above,97.70,3701,3200,2850,4110
+2016,SMU,School of Accountancy,Accountancy,96.00,3455,3000,2900,3600
+2016,SMU,School of Accountancy,Accountancy Cum Laude and above,100.00,3943,3600,3000,4583
+2009,SMU,School of Business,Business Management,82.80,3048,2800,2400,3325
+2009,SMU,School of Business,Business Management Cum Laude and above,86.70,3336,3000,2500,3500
+2010,SMU,School of Business,Business Management,90.70,3292,3000,2550,3500
+2010,SMU,School of Business,Business Management Cum Laude and above,94.10,3750,3400,2800,4000
+2011,SMU,School of Business,Business Management,87.30,3369,3020,2600,3800
+2011,SMU,School of Business,Business Management Cum Laude and above,91.50,3777,3500,3000,4100
+2012,SMU,School of Business,Business Management,85.60,3348,3000,2700,3500
+2012,SMU,School of Business,Business Management Cum Laude and above,93.80,3854,3500,2860,4167
+2013,SMU,School of Business,Business Management,87.30,3520,3200,2800,3750
+2013,SMU,School of Business,Business Management Cum Laude and above,93.80,3975,3580,3000,4100
+2014,SMU,School of Business,Business Management,86.40,3752,3333,3000,4000
+2014,SMU,School of Business,Business Management Cum Laude and above,94.00,4116,3600,3200,4500
+2015,SMU,School of Business,Business Management,88.20,3611,3300,3000,4000
+2015,SMU,School of Business,Business Management Cum Laude and above,93.30,4130,3868,3200,4600
+2016,SMU,School of Business,Business Management,84.60,3831,3500,3000,4000
+2016,SMU,School of Business,Business Management Cum Laude and above,92.10,4243,3660,3250,4583
+2009,SMU,School of Economics,Economics,88.90,3288,3000,2500,3763
+2009,SMU,School of Economics,Economics Cum Laude and above,92.60,3606,3200,2800,4000
+2010,SMU,School of Economics,Economics,90.20,3429,3100,2650,3700
+2010,SMU,School of Economics,Economics Cum Laude and above,95.00,3579,3300,2800,3700
+2011,SMU,School of Economics,Economics,88.90,3559,3200,2800,3864
+2011,SMU,School of Economics,Economics Cum Laude and above,92.00,3999,3500,3175,4275
+2012,SMU,School of Economics,Economics,82.70,3768,3500,3000,4075
+2012,SMU,School of Economics,Economics Cum Laude and above,84.20,4053,3500,3000,4314
+2013,SMU,School of Economics,Economics,88.60,3513,3339,3000,3800
+2013,SMU,School of Economics,Economics Cum Laude and above,94.00,3820,3600,3250,4000
+2014,SMU,School of Economics,Economics,83.90,3645,3500,3175,4000
+2014,SMU,School of Economics,Economics Cum Laude and above,89.10,3824,3800,3300,4350
+2015,SMU,School of Economics,Economics,85.80,3946,3500,3200,4100
+2015,SMU,School of Economics,Economics Cum Laude and above,92.70,4380,3850,3500,4700
+2016,SMU,School of Economics,Economics,84.00,3906,3700,3200,4300
+2016,SMU,School of Economics,Economics Cum Laude and above,92.50,4425,4107,3800,4750
+2009,SMU,School of Information Systems,Information Systems Management,85.90,3445,2750,2400,3850
+2009,SMU,School of Information Systems,Information Systems Management Cum Laude and above,72.20,3754,4000,2800,4600
+2010,SMU,School of Information Systems,Information Systems Management,93.00,3474,3100,2650,4000
+2010,SMU,School of Information Systems,Information Systems Management Cum Laude and above,95.00,4547,4350,3500,4950
+2011,SMU,School of Information Systems,Information Systems Management,94.60,3637,3215,2893,4150
+2011,SMU,School of Information Systems,Information Systems Management Cum Laude and above,96.00,4294,4200,3150,4783
+2012,SMU,School of Information Systems,Information Systems Management,86.50,3383,3150,2900,3800
+2012,SMU,School of Information Systems,Information Systems Management Cum Laude and above,84.20,3946,3831,3105,4100
+2013,SMU,School of Information Systems,Information Systems Management,89.50,3468,3300,3000,3800
+2013,SMU,School of Information Systems,Information Systems Management Cum Laude and above,90.90,3862,3800,3500,4000
+2014,SMU,School of Information Systems,Information Systems Management,80.60,3530,3350,3000,4000
+2014,SMU,School of Information Systems,Information Systems Management Cum Laude and above,84.20,4151,4050,3500,4540
+2015,SMU,School of Information Systems,Information Systems Management,85.90,3660,3500,3200,4110
+2015,SMU,School of Information Systems,Information Systems Management Cum Laude and above,92.10,3834,3800,3500,4166
+2016,SMU,School of Information Systems,Information Systems Management,91.50,3897,3600,3200,4167
+2016,SMU,School of Information Systems,Information Systems Management Cum Laude and above,95.00,4603,4167,3800,4750
+2009,SMU,School of Social Sciences,Social Sciences,72.00,2613,2500,2275,2850
+2009,SMU,School of Social Sciences,Social Sciences Cum Laude and above,73.30,2673,2850,2350,2950
+2010,SMU,School of Social Sciences,Social Sciences,90.50,2824,2675,2400,3200
+2010,SMU,School of Social Sciences,Social Sciences Cum Laude and above,93.30,3479,3250,3200,3875
+2011,SMU,School of Social Sciences,Social Sciences,88.50,3043,3000,2550,3500
+2011,SMU,School of Social Sciences,Social Sciences Cum Laude and above,87.50,3450,3500,3100,3700
+2012,SMU,School of Social Sciences,Social Sciences,79.50,3289,3000,2685,3705
+2012,SMU,School of Social Sciences,Social Sciences Cum Laude and above,86.70,3496,3260,2923,4013
+2013,SMU,School of Social Sciences,Social Sciences,79.80,3150,3000,2600,3320
+2013,SMU,School of Social Sciences,Social Sciences Cum Laude and above,83.30,3267,3200,2800,3781
+2014,SMU,School of Social Sciences,Social Sciences,84.10,3166,3000,2800,3580
+2014,SMU,School of Social Sciences,Social Sciences Cum Laude and above,81.30,3545,3590,3000,3955
+2015,SMU,School of Social Sciences,Social Sciences,83.00,3550,3200,2980,3600
+2015,SMU,School of Social Sciences,Social Sciences Cum Laude and above,89.70,4012,3560,3300,4583
+2016,SMU,School of Social Sciences,Social Sciences,80.40,3311,3145,3000,3500
+2016,SMU,School of Social Sciences,Social Sciences Cum Laude and above,87.20,3548,3400,3000,3668
